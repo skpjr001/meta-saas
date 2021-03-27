@@ -5,7 +5,6 @@ import Footer from '../Components/Footer';
 const urlMetadata = require('url-metadata');
 
 export default function meta({data}) {
-  console.log(data);
 
   function Error() {
     return(
@@ -81,9 +80,9 @@ export async function getServerSideProps(context) {
       const data = await urlMetadata(url);
       // Pass data to the page via props
       return { props: { data } };
-    } catch (error) {
+    } catch (err) {
       // Pass data to the page via props
-      return {props:{ }}
+      return {props:{ error:err.code }}
     }
     
   }
