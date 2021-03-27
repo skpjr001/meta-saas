@@ -1,16 +1,19 @@
-import Head from 'next/head'
 import Layout from '../Components/Layout'
 import Link from 'next/link'
 import { useState } from 'react'
+import Header from '../Components/Header';
+import Footer from '../Components/Footer';
 
 export default function Home() {
-  const [address, setAddress] = useState("figma.com");
+  const [address, setAddress] = useState("");
   const example = "Google.com"
 
   const submitOnEnter = (e) => {
     if(e.keyCode == 13){
       console.log("enter pressed");
+      setAddress(address.length>3? address : "figma.com")
       document.getElementById("inputButton").click();
+      
     }
   }
 
@@ -19,34 +22,35 @@ export default function Home() {
   }
 
   return (
+    <>
     <Layout title="Meta Generator - Website Meta Tag Checker and Generator">
-      
+      <Header headerBar = "false"/>
       <section>
-        <div className="p-3 sm:p-7 md:p-10 flex flex-row justify-end">
-          <Link href="/"><a><h1 className="pr-3 text-base font-semibold text-gray-700 hover:text-gray-400 cursor-pointer">Why Meta Tags?</h1></a></Link>
-          <Link href="/about"><a><h1 hidden className="pr-3 text-base font-semibold text-gray-700 hover:text-gray-400 cursor-pointer">About</h1></a></Link>
-        </div>
-        <div className = "m-5 sm:m-8 md:m-10 flex flex-col items-center text-center">
+        <div className = "m-5 sm:m-8 flex flex-col items-center text-center">
           <div className="flex flex-col text-center">
-            <a href='/' className="m-3 sm:m-5 md:mb-16">
+            <Link href='/'><a className="m-3 sm:m-5 md:mb-16">
               <h1 className="font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl 2xl:text-8xl md:font-extrabold text-indigo-600">Meta Tags</h1>
-              <p className="mt-1 sm:mt-4 text-base font-normal sm:text-lg  md:text-2xl md:font-medium text-gray-400">Simply search and generate meta tags/data.</p>
-            </a>
+              <p className="mt-1 sm:mt-4 text-base font-normal sm:text-lg  md:text-xl md:font-medium text-gray-400">Simply search and generate meta tags/data.</p>
+            </a></Link>
           </div>
           <div className="inline-flex h-8 sm:h-10">
-            <input id="input" type="text" placeholder="Website Address" className="w-56 md:w-96 pl-3 outline-none rounded-l-3xl border-2 hover:border-indigo-400 focus:border-indigo-600" onChange={(e)=>handleAddress(e)} onKeyDown={(e)=>submitOnEnter(e)} />
-            <a href={"meta?url="+address} type="button" id="inputButton" className="cursor-pointer bg-indigo-400 w-10 hover:bg-indigo-600">
+            <input id="input" type="text" placeholder="Website Address"  value={address} className="w-56 md:w-96 pl-3 outline-none rounded-l-3xl border-2 hover:border-indigo-400 focus:border-indigo-600" onChange={handleAddress} onKeyDown={(e)=>submitOnEnter(e)} />
+            <Link href={"/meta?url="+address}><a type="button" id="inputButton" className="cursor-pointer bg-indigo-400 w-10 hover:bg-indigo-600">
               <svg className="mx-auto mt-1 sm:mt-2" xmlns="http://www.w3.org/2000/svg" height="22" viewBox="0 0 28 27">
               <g fill="#FFF">
                 <path d="M27.5 12.1L16.8 0.6C16.1 0 14.7-0.3 13.9 0.5 13.1 1.2 13.1 2.7 13.9 3.4L21.4 11.5 2 11.5C0.9 11.5 0 12.4 0 13.5 0 14.6 0.9 15.5 2 15.5L21.4 15.5 13.9 23.6C13.2 24.3 13.1 25.8 13.9 26.5 14.7 27.3 16.1 27 16.8 26.4L27.5 14.9C27.8 14.5 28 14 28 13.5 28 13 27.8 12.5 27.5 12.1Z"></path>
               </g>
             </svg>
-            </a>
+            </a></Link>
           </div>
-          <p className="mt-2 text-base font-normal text-gray-400">Try on an example: <a href={"meta?url="+example} className=" text-indigo-400 cursor-pointer  hover:text-indigo-600" >{example}</a></p>
+          <p className="mt-2 text-base font-normal text-gray-400">Try on an example: <a href={"/meta?url="+example} className=" text-indigo-400 cursor-pointer  hover:text-indigo-600" >{example}</a></p>
         </div>    
       </section>
+      
     </Layout>
+    <Footer position="absolute"></Footer>
+    </>
+    
   )
 }
 

@@ -7,7 +7,7 @@ export default function Layout({title, children}) {
     <Head>
       <title>{title}</title>
     </Head>
-    <main className="min-h-screen">
+    <main className="">
       {children}
     </main>
     
