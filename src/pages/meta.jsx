@@ -7,7 +7,7 @@ import Footer from '../Components/Footer';
 
 export default function meta({url}) {
   const [metaData, setMetaData] = useState({});
-
+  const router = useRouter();
     useEffect(() => {
       getMetaData(url).then(e=> {setMetaData(e)});
     }, [])
@@ -65,6 +65,14 @@ export default function meta({url}) {
     
   }
 
+  const getMetaData = async (url) => {
+    console.log(router);
+    console.log(window.location.hostname);
+    console.log("inside method:",url);
+    const res = await (await fetch(`/api/hello?url=${url}`)).json();
+    return res.Data;
+  }
+
   return (
     <>
     <div className="lg:container mx-auto">
@@ -85,11 +93,7 @@ export default function meta({url}) {
   )
 };
 
-const getMetaData = async (url) => {
-  console.log("inside method:",url);
-  const res = await (await fetch(`http://localhost:3000/api/hello?url=${url}`)).json();
-  return res.Data;
-}
+
 
 
 
