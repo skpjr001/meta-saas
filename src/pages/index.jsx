@@ -11,7 +11,6 @@ export default function Home() {
   const submitOnEnter = (e) => {
     if(e.keyCode == 13){
       console.log("enter pressed");
-      setAddress(address.length>3? address : "figma.com")
       document.getElementById("inputButton").click();
       
     }

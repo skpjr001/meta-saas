@@ -31,7 +31,7 @@ export default function Header({headerBar}) {
     }
 
     return(
-      <div className="mt-8 flex flex-col items-center sm:flex-row sm:items-end justify-evenly">
+      <div className="mt-8 flex flex-col items-center sm:flex-row justify-evenly">
         <Link href="/"><a><h1 className="font-bold text-4xl p-3 sm:text-6xl text-indigo-600">Meta Tags</h1></a></Link>
         <div className="inline-flex h-8 sm:h-10">
           <input id="input" type="text" placeholder="Website Address" value={address} className="w-44 md:w-56 pl-3 outline-none rounded-l-3xl border-2 hover:border-indigo-400 focus:border-indigo-600" onChange={handleAddress} onKeyDown={(e)=>submitOnEnter(e)} />
