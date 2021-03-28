@@ -7,18 +7,22 @@ import Footer from '../Components/Footer';
 
 export default function meta({url}) {
   const [metaData, setMetaData] = useState({});
+  const [showError, setShowError] = useState(false);
   const router = useRouter();
     useEffect(() => {
-      getMetaData(url).then(e=> {setMetaData(e)});
+      getMetaData(url).then(e=> {setMetaData(e)}).catch((e)=>{
+        setShowError(true);
+        console.log("inside useEffect : ",e);
+      });
     }, [])
 
-  function Error() {
+  function ErrorComponent() {
     return(
       <h1 className="p-2 text-xl font-semibold bg-red-400">Something went wrong!! Check Website Address and Enter Again. </h1>
     )
   }
   
-  function Data() {
+  function DataComponent() {
     return(
       <>
       <div className="mb-10 sm:mb-16">
@@ -56,10 +60,19 @@ export default function meta({url}) {
 
   const submitHandler = (address) => {
     if (address.includes("http://")) {
-      getMetaData(address).then(e=> {setMetaData(e)});
+      getMetaData(address).then(e=> {setMetaData(e)}).catch((e)=>{
+        console.log("inside submit handler : ",e);
+        setShowError(true);
+      });
     } else if(address.includes("https://")) {
-      getMetaData(address).then(e=> {setMetaData(e)});
-    }else getMetaData("https://"+address).then(e=> {setMetaData(e)});
+      getMetaData(address).then(e=> {setMetaData(e)}).catch((e)=>{
+        console.log("inside submit handler : ",e);
+        setShowError(true);
+      });
+    }else getMetaData("https://"+address).then(e=> {setMetaData(e)}).catch((e)=>{
+      console.log("inside submit handler : ",e);
+      setShowError(true);
+    });
     //getMetaData().then(e=> {setMetaData(e)});
     
     
@@ -69,8 +82,11 @@ export default function meta({url}) {
     console.log(router);
     console.log(window.location.hostname);
     console.log("inside method:",url);
-    const res = await (await fetch(`/api/hello?url=${url}`)).json();
-    return res.Data;
+    const res = await fetch(`/api/hello?url=${url}`);
+    if(res.ok == false) throw new Error("Something went wrong!! Please try again.") 
+    const data = await res.json();
+    console.log(data);
+    return data.Data;
   }
 
   return (
@@ -82,7 +98,7 @@ export default function meta({url}) {
         <div className="col-span-5 sm:col-span-3 lg:col-span-3">
           
           <div className="my-10 rounded-xl">
-          {metaData?<Data/>:<Error/>}
+          {!showError?<DataComponent/>:<ErrorComponent/>}
           </div>
         </div>
         <div className="col-span-5 sm:col-span-2 lg:col-span-1">Ad here</div>

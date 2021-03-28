@@ -10,8 +10,9 @@ export default (req, res) => {
     res.status(200).json({ Data: metadata})
   },
   function (error) { // failure handler
-    //console.log(error)
-    res.status(200).json({ Error: error})
+    console.log(error.code);
+    const err = new Error(`Something went wrong!! Try Again after some time. ErrorCode: ${error.code}`);
+    res.status(404).send({Error:error});
   })
   //res.status(200).json({ name: 'John Doe'})
 }

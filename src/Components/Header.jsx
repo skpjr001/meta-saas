@@ -20,7 +20,6 @@ export default function Header({handler,headerBar}) {
 
     const submitOnEnter = (e) => {
       if(e.keyCode == 13){
-        setAddress(address.length>3? address : "figma.com")
         document.getElementById("inputButton").click();
       
       }
