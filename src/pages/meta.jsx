@@ -6,7 +6,7 @@ import Footer from '../Components/Footer';
 //const urlMetadata = require('url-metadata');
 
 export default function meta({url}) {
-  const [metaData, setMetaData] = useState({});
+  const [metaData, setMetaData] = useState({title:"",description:"",image:"",url:""});
   const [showError, setShowError] = useState(false);
   const router = useRouter();
     useEffect(() => {
