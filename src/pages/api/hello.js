@@ -3,7 +3,7 @@ const urlMetadata = require('url-metadata');
 
 export default (req, res) => {
   //const url ="https://figma.com"
-  console.log(req.query.url);
+  console.log("Inside API req: ",req.query.url);
   urlMetadata(req.query.url).then(
   function (metadata) { // success handler
     //console.log(metadata)
