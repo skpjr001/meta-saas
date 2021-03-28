@@ -10,7 +10,10 @@ export default function meta({url}) {
   const [showError, setShowError] = useState(false);
   const router = useRouter();
     useEffect(() => {
-      getMetaData(url).then(e=> {setMetaData(e)}).catch((e)=>{
+      getMetaData(url).then(e=> {
+        setShowError(false);
+        setMetaData(e);
+      }).catch((e)=>{
         setShowError(true);
         console.log("inside useEffect : ",e);
       });
@@ -60,16 +63,25 @@ export default function meta({url}) {
 
   const submitHandler = (address) => {
     if (address.includes("http://")) {
-      getMetaData(address).then(e=> {setMetaData(e)}).catch((e)=>{
+      getMetaData(address).then(e=> {
+        setShowError(false);
+        setMetaData(e);
+      }).catch((e)=>{
         console.log("inside submit handler : ",e);
         setShowError(true);
       });
     } else if(address.includes("https://")) {
-      getMetaData(address).then(e=> {setMetaData(e)}).catch((e)=>{
+      getMetaData(address).then(e=> {
+        setShowError(false);
+        setMetaData(e);
+      }).catch((e)=>{
         console.log("inside submit handler : ",e);
         setShowError(true);
       });
-    }else getMetaData("https://"+address).then(e=> {setMetaData(e)}).catch((e)=>{
+    }else getMetaData("https://"+address).then(e=> {
+      setShowError(false);
+      setMetaData(e);
+    }).catch((e)=>{
       console.log("inside submit handler : ",e);
       setShowError(true);
     });
