@@ -6,8 +6,11 @@ import Footer from '../Components/Footer';
 
 export default function meta({url}) {
   const [metaData, setMetaData] = useState({});
-    getMetaData(url).then(e=> {setMetaData(e)});
+    
 
+    useEffect(() => {
+      getMetaData(url).then(e=> {setMetaData(e)});
+    }, [])
 
   function Error() {
     return(
@@ -71,7 +74,7 @@ export default function meta({url}) {
   )
 };
 
-const getMetaData = async (url="https://figma.com") => {
+const getMetaData = async (url) => {
   const res = await (await fetch(`http://localhost:3000/api/hello?url=${url}`)).json();
   return res.Data;
 }
