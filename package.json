@@ -8,10 +8,15 @@
     "start": "next start"
   },
   "dependencies": {
+    "@chakra-ui/react": "^1.4.1",
+    "@emotion/react": "^11.1.5",
+    "@emotion/styled": "^11.1.5",
+    "framer-motion": "^4.0.3",
     "next": "10.0.9",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "url-inspector": "^3.2.0",
+    "react-icons": "^4.2.0",
+    "swr": "^0.5.4",
     "url-metadata": "^2.5.0"
   },
   "devDependencies": {

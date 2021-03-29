@@ -1,10 +1,19 @@
 import '../styles/globals.css';
-import Footer from '../Components/Footer'
-import Header from '../Components/Header'
+import {ChakraProvider} from '@chakra-ui/react'
+import WarningProvider from '../Components/Warning/WarningProvider';
+import Footer from '../Components/Footer';
 function MyApp({ Component, pageProps }) {
   return (  
-    <Component {...pageProps} />
+
+    <ChakraProvider>
+      <WarningProvider>
+        <Component {...pageProps} />
+      </WarningProvider>
+      <Footer/>
+    </ChakraProvider>
+    
   )
 }
+
 
 export default MyApp

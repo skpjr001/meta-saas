@@ -1,65 +1,53 @@
 import React, {useState, useEffect} from 'react';
 import Link from 'next/link'
+import useSWR from 'swr'
 import {useRouter} from'next/router'
-import Header from '../Components/Header';
-import Footer from '../Components/Footer';
+import { Box, Flex } from '@chakra-ui/layout';
+import { Heading } from '@chakra-ui/layout';
+import { Text } from '@chakra-ui/layout';
+import { Skeleton } from '@chakra-ui/skeleton';
+import MetaData from '../Components/MetaData';
 //const urlMetadata = require('url-metadata');
 
-export default function meta({url}) {
-  const [metaData, setMetaData] = useState({title:"",description:"",image:"",url:""});
-  const [showError, setShowError] = useState(false);
-  const router = useRouter();
-    useEffect(() => {
-      getMetaData(url).then(e=> {
-        setShowError(false);
-        setMetaData(e);
-      }).catch((e)=>{
-        setShowError(true);
-        console.log("inside useEffect : ",e);
-      });
-    }, [])
 
-  function ErrorComponent() {
-    return(
-      <h1 className="p-2 text-xl font-semibold bg-red-400">Something went wrong!! Check Website Address and Enter Again. </h1>
-    )
-  }
+
+
+export default function meta() {
+  const [metaData, setMetaData] = useState({title:" ", description:" ", image:" ", url:" "});
   
-  function DataComponent() {
-    return(
-      <>
-      <div className="mb-10 sm:mb-16">
-        <h1 className="text-3xl font-bold text-gray-600">Title</h1>
-        <p className="mt-1 mb-4 text-gray-400">Your website’s “name”. While it should be a bit descriptive, try to limit it at 50 characters.</p>
-        <p contentEditable suppressContentEditableWarning={true} className="my-1 p-3 text-base font-medium outline-none border-2 border-transparent rounded-xl hover:border-indigo-400 focus:border-indigo-600 bg-gray-100">
-          "{metaData.title}
-        </p>
-      </div>
-      <div className="mb-10 sm:mb-16">
-        <h1 className="text-3xl font-bold text-gray-600">Image Source</h1>
-        <p className="mt-1 mb-4 text-gray-400">This image is the first thing people will see when someone shares your website. Make sure it stands out. Sometimes social websites fallback to a random image from your website, so this is quite important.</p>
-        <p contentEditable suppressContentEditableWarning={true} className="my-1 p-3 text-base font-medium outline-none border-2 border-transparent rounded-xl hover:border-indigo-400 focus:border-indigo-600 bg-gray-100">
-          "{metaData.image}
-        </p>
-      </div>
-      <div className="mb-10 sm:mb-16">
-        <h1 className="text-3xl font-bold text-gray-600">Description</h1>
-        <p className="mt-1 mb-4 text-gray-400">A short summary to get people an idea of what to expect when visiting your website. Try to limit it at 100 characters.</p>
-        <p contentEditable suppressContentEditableWarning={true} className="my-1 p-3 text-base font-medium outline-none border-2 border-transparent rounded-xl hover:border-indigo-400 focus:border-indigo-600 bg-gray-100">
-          "{metaData.description}
-        </p>
-      </div>
-      <div className="mb-10 sm:mb-16">
-        <h1 className="text-3xl font-bold text-gray-600">Url</h1>
-        <p className="mt-1 mb-4 text-gray-400">The address people will type in to get to your website.</p>
-        <p contentEditable suppressContentEditableWarning={true} className="my-1 p-3 text-base font-medium outline-none border-2 border-transparent rounded-xl hover:border-indigo-400 focus:border-indigo-600 bg-gray-100">
-          "{metaData.url}
-        </p>
-      </div>
-      
-      </>
-    )
+  
+  //next router to get query obj
+  const router = useRouter();
+  const { url } = router.query;
+  console.log(url);
+
+    // useEffect(() => {
+    //   getMetaData(url).then(e=> {
+    //     setShowError(false);
+    //     setMetaData(e);
+    //   }).catch((e)=>{
+    //     setShowError(true);
+    //     console.log("inside useEffect : ",e);
+    //   });
+    // }, [])
+
+  //Header Code Start
+  const [address, setAddress] = useState("");
+
+  const submitOnEnter = (e) => {
+    if(e.keyCode == 13){
+    
+    }
   }
+
+  const handleAddress = (e) => {
+    setAddress(e.target.value);
+  }
+  //Header Code End
+
+  
+  
+  
 
   const submitHandler = (address) => {
     if (address.includes("http://")) {
@@ -85,14 +73,10 @@ export default function meta({url}) {
       console.log("inside submit handler : ",e);
       setShowError(true);
     });
-    //getMetaData().then(e=> {setMetaData(e)});
-    
-    
+    getMetaData().then(e=> {setMetaData(e)});
   }
 
   const getMetaData = async (url) => {
-    console.log(router);
-    console.log(window.location.hostname);
     console.log("inside method:",url);
     const res = await fetch(`/api/hello?url=${url}`);
     if(res.ok == false) throw new Error("Something went wrong!! Please try again.") 
@@ -104,72 +88,47 @@ export default function meta({url}) {
   return (
     <>
     <div className="lg:container mx-auto">
-    <Header handler={(e)=>submitHandler(e)} headerBar="true"/>
-      <div className="m-5 sm:m-2 grid grid-cols-5 gap-10">
+      <div id="Header" className="mt-8 flex flex-col items-center sm:flex-row justify-evenly">
+        <Link href="/"><a><h1 className="font-bold text-4xl p-3 sm:text-6xl text-indigo-600">Meta Tags</h1></a></Link>
+        <div className="inline-flex h-8 sm:h-10">
+          <input id="input" type="text" placeholder="Website Address" value={address} className="w-44 md:w-56 pl-3 outline-none rounded-l-3xl border-2 hover:border-indigo-400 focus:border-indigo-600" onChange={handleAddress} onKeyDown={(e)=>submitOnEnter(e)} />
+          <Link href={"/meta?url="+address}><a type="button" id="inputButton" className="cursor-pointer bg-indigo-400 w-10 hover:bg-indigo-600" onClick={submitHandler}>
+            <svg className="mx-auto mt-1 sm:mt-2" xmlns="http://www.w3.org/2000/svg" height="22" viewBox="0 0 28 27">
+            <g fill="#FFF">
+              <path d="M27.5 12.1L16.8 0.6C16.1 0 14.7-0.3 13.9 0.5 13.1 1.2 13.1 2.7 13.9 3.4L21.4 11.5 2 11.5C0.9 11.5 0 12.4 0 13.5 0 14.6 0.9 15.5 2 15.5L21.4 15.5 13.9 23.6C13.2 24.3 13.1 25.8 13.9 26.5 14.7 27.3 16.1 27 16.8 26.4L27.5 14.9C27.8 14.5 28 14 28 13.5 28 13 27.8 12.5 27.5 12.1Z"></path>
+            </g>
+            </svg>
+          </a></Link>
+        </div>
+      </div>
+      <div id="Content" className="m-5 sm:m-2 grid grid-cols-5 gap-10">
         <div className="col-span-5 sm:col-span-5 lg:col-span-1">Ad here</div>
         <div className="col-span-5 sm:col-span-3 lg:col-span-3">
           
           <div className="my-10 rounded-xl">
-          {!showError?<DataComponent/>:<ErrorComponent/>}
+          <MetaData url={url} />
           </div>
         </div>
         <div className="col-span-5 sm:col-span-2 lg:col-span-1">Ad here</div>
       </div>
     </div> 
-    <Footer/>
     </>
   )
 };
 
 
 
-
-
 // This gets called on every request
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   
-  const input = context.query.url;
-  if (input.includes("http://")) {
-    return {props:{url:input}}
-  } else if(input.includes("https://")) {
-    return {props:{url:input}}
-  }else return {props:{url:`https://${input}`}}
+  // const input = context.query.url;
+  // if (input.includes("http://")) {
+  //   return {props:{url:input}}
+  // } else if(input.includes("https://")) {
+  //   return {props:{url:input}}
+  // }else return {props:{url:`https://${input}`}}
   
-
-  // if(input.includes("http://")){
-  //   try {
-  //     const data = await urlMetadata(input);
-  //     // Pass data to the page via props
-  //     return { props: { data } };
-  //   } catch (error) {
-  //     // Pass data to the page via props
-  //     return { props: { error:"error" } };
-  //   }
-
-  // } else if(input.includes("https://")){
-  //   try {
-  //     const data = await urlMetadata(input).catch((err)=> new Error(err));
-  //     console.log(data);
-      
-  //     // Pass data to the page via props
-  //     return { props: { data } };
-  //   } catch (error) {
-  //     // Pass data to the page via props
-  //     return { props: { error:"error" } };
-  //   }
-
-  // }else{
-  //   const url =`https://${input}`;
-  //   try {
-  //     const data = await urlMetadata(url);
-  //     // Pass data to the page via props
-  //     return { props: { data } };
-  //   } catch (err) {
-  //     // Pass data to the page via props
-  //     return {props:{ error:err.code }}
-  //   }
-    
-  // }
+  return { props:{}}
 }
 
 
