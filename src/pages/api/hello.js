@@ -8,12 +8,12 @@ export default (req, res) => {
   urlMetadata(req.query.url).then(
   function (metadata) { // success handler
     //console.log("Data: ",metadata)
-    res.status(200).send(metadata);
+    res.status(200).json(metadata);
     return;
   },
   function (error) { // failure handler
     //console.log("Error: ",error.code);
-    res.status(404).send(error);
+    res.status(404).json(error);
     return;
   })
   //res.status(200).json({ name: 'John Doe'})

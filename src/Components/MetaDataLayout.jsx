@@ -17,7 +17,7 @@ export default function MetaDataLayout({isLoading=true, data}) {
     <Box my={{base:10,lg:16}} >
       <Heading textColor={"gray.600"} fontWeight={"bold"} size={"xl"} >Description</Heading>
       <Text textColor={"gray.400"} my={2} >A short summary to get people an idea of what to expect when visiting your website. Try to limit it at 100 characters.</Text>
-      <Skeleton isLoaded={!isLoading} borderRadius={"xl"} isLoaded>
+      <Skeleton isLoaded={!isLoading} borderRadius={"xl"} >
       <p contentEditable suppressContentEditableWarning={true} className="my-1 p-3 text-base font-medium outline-none border-2 border-transparent rounded-xl hover:border-indigo-400 focus:border-indigo-600 bg-gray-100">
         "{data?data.description:""}
       </p>

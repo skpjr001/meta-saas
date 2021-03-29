@@ -1,6 +1,8 @@
 import React from 'react'
 import useSWR from 'swr';
 import MetaDataLayout from './MetaDataLayout';
+import {useRouter} from 'next/router'
+import {Alert, AlertTitle, AlertIcon, AlertDescription} from '@chakra-ui/react'
 export default function MetaData({url}) {
   const { data, isLoading, isError } = useData(url)
 
@@ -12,8 +14,33 @@ export default function MetaData({url}) {
 
 //Error Component Code Start
 function ErrorComponent() {
+  const router = useRouter();
+
+  setTimeout(()=>{
+    console.log("Redirecting to homepage!!");
+    router.replace("/");
+  },5000)
   return(
-    <h1 className="p-2 text-xl font-semibold bg-red-400">Something went wrong!! Check Website Address and Enter Again. </h1>
+    <>
+    {/* <h1 className="p-2 text-xl font-semibold bg-red-400"> </h1> */}
+    <Alert
+      status="error"
+      variant="top-accent"
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="center"
+      textAlign="center"
+      height="200px"
+      >
+      <AlertIcon boxSize="40px" mr={0} />
+      <AlertTitle mt={4} mb={1} fontSize="lg">
+        Error Occured!!
+      </AlertTitle>
+      <AlertDescription maxWidth="sm">
+      Something went wrong!! Check Website Address and Try Again.
+      </AlertDescription>
+    </Alert>
+    </>
   )
 }
 //Error Component Code End
