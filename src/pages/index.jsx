@@ -35,7 +35,7 @@ export default function Home() {
         showWarning("Https Included", "Do not enter http:// in your input url address.");
         return;
       }
-      router.push({pathname:"/meta",query:{url:`${address}`}});
+      router.push({pathname:"/meta", query:{url:`${address}`}});
       return;
     }
   }
@@ -44,10 +44,9 @@ export default function Home() {
   const handleAddress = (e) => setAddress(e.target.value);
 
   //Submit Example address handler
-  const submitExample = (e) => {
-    console.log(e.target.textContent);
-    router.push({pathname:"/meta",query:{url:`${example}`}});
-  }
+  // const submitExample = (e) => {
+  //   router.push({pathname:"/meta", query:{url:example}});
+  // }
 
   //Submit on Button Click Handler
   //Submit button is hidden
@@ -85,7 +84,7 @@ export default function Home() {
           
           <Box id="example">
             <Wrap>
-            <Text textColor={"gray.400"}>{"Try on an example :  "}</Text><Link href="/" ><a><Text textColor={"purple.400"} cursor={"pointer"} _hover={{textColor:"purple.600"}} onClick={submitExample}>{example}</Text></a></Link>
+            <Text textColor={"gray.400"}>{"Try on an example :  "}</Text><Link href={`/meta?url=${example}`} ><a><Text textColor={"purple.400"} cursor={"pointer"} _hover={{textColor:"purple.600"}} >{example}</Text></a></Link>
             </Wrap>
           </Box>
           </Center>

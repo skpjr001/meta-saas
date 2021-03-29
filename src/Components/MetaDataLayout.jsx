@@ -2,7 +2,7 @@ import { Box, Heading, Skeleton, Text } from '@chakra-ui/react'
 import React from 'react'
 
 export default function MetaDataLayout({isLoading=true, data}) {
-  console.log(isLoading," ",data);
+  //console.log(isLoading," ",data);
   return(
     <>
     <Box my={{base:10,lg:16}} >
