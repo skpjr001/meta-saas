@@ -17,7 +17,7 @@ function ErrorComponent() {
   const router = useRouter();
 
   setTimeout(()=>{
-    console.log("Redirecting to homepage!!");
+    //console.log("Redirecting to homepage!!");
     router.replace("/");
   },5000)
   return(
