@@ -1,10 +1,22 @@
-import { Box, Heading, Skeleton, Text } from '@chakra-ui/react'
+import { Box, Heading, Image, Skeleton, Text } from '@chakra-ui/react'
 import React from 'react'
 
 export default function MetaDataLayout({isLoading=true, data}) {
   //console.log(isLoading," ",data);
   return(
     <>
+    <Box my={{base:10,lg:16}} >
+      <Heading textColor={"gray.600"} fontWeight={"bold"} size={"xl"} >Social Card Preview</Heading>
+      <Text textColor={"gray.400"} my={2} >This is how your website could look like when someone shares it.</Text>
+      <Skeleton display={"flex"} justifyContent={"center"} isLoaded={!isLoading} borderRadius={"xl"}>
+      <Box mt={5} border={"8px"} borderColor={"gray.200"} width={"600px"} maxW={"100%"} >
+        <Image width={"100%"} maxHeight={"300px"} objectFit={"cover"} src={data?.image} fallbackSrc={data?.url+data?.image} />
+        <Text mx={4} my={2} fontSize={"xl"} fontWeight={"bold"} isTruncated>{data?.title}</Text>
+        <Text mx={4} my={2} fontSize={"lg"} noOfLines={2}>{data?.description}</Text>
+        <Text mx={4} my={2}>{data?.url}</Text>
+      </Box>
+      </Skeleton>
+    </Box>
     <Box my={{base:10,lg:16}} >
       <Heading textColor={"gray.600"} fontWeight={"bold"} size={"xl"} >Title</Heading>
       <Text textColor={"gray.400"} my={2} >Your website’s “name”. While it should be a bit descriptive, try to limit it at 50 characters.</Text>
@@ -31,6 +43,10 @@ export default function MetaDataLayout({isLoading=true, data}) {
         "{data?.image}
       </p>
       </Skeleton>
+      <Skeleton isLoaded={!isLoading}>
+        <Image bg={"gray.100"} p={3} mt={5} width={"100%"} maxHeight={"400px"} objectFit={"contain"} src={data?.image} fallbackSrc={data?.url+data?.image} />
+      </Skeleton>
+      
     </Box>
     <Box my={{base:10,lg:16}} >
       <Heading textColor={"gray.600"} fontWeight={"bold"} size={"xl"} >Url</Heading>
