@@ -4,6 +4,7 @@ import { Box } from '@chakra-ui/react';
 import MetaData from '../Components/MetaData';
 import Warning from '../Components/Warning/Index';
 import Header from '../Components/Header';
+import Layout from '../Components/Layout';
 
 
 export default function meta() {
@@ -15,6 +16,7 @@ export default function meta() {
   return (
     <>
     <Warning />
+    <Layout title={`Meta tags for ${url} | Meta Tags`}>
     <Box className="lg:container mx-auto">
       <Header/>
       <div id="Content" className="m-5 sm:m-2 grid grid-cols-5 gap-10">
@@ -26,7 +28,8 @@ export default function meta() {
         </div>
         <div className="col-span-5 sm:col-span-2 lg:col-span-1">Ad here</div>
       </div>
-    </Box> 
+    </Box>
+    </Layout>
     </>
   )
 };
