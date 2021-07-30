@@ -5,6 +5,9 @@ import {useRouter} from 'next/router';
 import {FormControl, InputGroup, Input, InputLeftAddon, Button, Center, Text, Box, Heading, Wrap, Divider} from '@chakra-ui/react'
 import WarningContext from '../Components/Warning/WarningContext';
 import Warning from '../Components/Warning/Index';
+import GoogleAd from '../Components/GoogleAd'
+
+
 export default function Home() {
 
   //next router
@@ -87,6 +90,7 @@ export default function Home() {
             <Text textColor={"gray.400"}>{"Try on an example :  "}</Text><Link href={`/meta?url=${example}`} ><a><Text textColor={"purple.400"} cursor={"pointer"} _hover={{textColor:"purple.600"}} >{example}</Text></a></Link>
             </Wrap>
           </Box>
+          <GoogleAd/>
           </Center>
         </div>
       </section>
