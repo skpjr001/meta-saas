@@ -1,5 +1,13 @@
 import React,{Component} from 'react'
 import Adsense from 'react-adsense'
+import {
+  Advertisement,
+  Container,
+  Divider,
+  Header,
+  Icon,
+  Message
+} from "semantic-ui-react";
 
 class BasicAd extends Component {
   componentDidMount() {
@@ -21,7 +29,10 @@ class BasicAd extends Component {
 
 function index() {
   return (
-    <BasicAd/>
+    <Advertisement unit="medium rectangle">
+      <BasicAd/>
+    </Advertisement>
+    
   )
 }
 

@@ -6,7 +6,7 @@ import {FormControl, InputGroup, Input, InputLeftAddon, Button, Center, Text, Bo
 import WarningContext from '../Components/Warning/WarningContext';
 import Warning from '../Components/Warning/Index';
 import GoogleAd from '../Components/GoogleAd'
-
+import AdSense from 'react-adsense'
 
 export default function Home() {
 
@@ -85,12 +85,19 @@ export default function Home() {
               <Button hidden type="submit" colorScheme="purple" variant="solid" onClick={submitHandler}>Submit</Button>
             </FormControl>
           
-          <Box id="example">
-            <Wrap>
-            <Text textColor={"gray.400"}>{"Try on an example :  "}</Text><Link href={`/meta?url=${example}`} ><a><Text textColor={"purple.400"} cursor={"pointer"} _hover={{textColor:"purple.600"}} >{example}</Text></a></Link>
-            </Wrap>
-          </Box>
-          <GoogleAd/>
+            <Box id="example">
+              <Wrap>
+              <Text textColor={"gray.400"}>{"Try on an example :  "}</Text><Link href={`/meta?url=${example}`} ><a><Text textColor={"purple.400"} cursor={"pointer"} _hover={{textColor:"purple.600"}} >{example}</Text></a></Link>
+              </Wrap>
+            </Box>
+            <GoogleAd/>
+          </Center>
+          <Center>
+            <AdSense.Google
+              client='ca-pub-4591861188995436'
+              slot='4640466102'
+              style={{ width: 500, height: 300, float: 'left' }}
+            />
           </Center>
         </div>
       </section>
