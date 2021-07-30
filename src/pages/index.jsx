@@ -7,6 +7,7 @@ import WarningContext from '../Components/Warning/WarningContext';
 import Warning from '../Components/Warning/Index';
 import GoogleAd from '../Components/GoogleAd'
 import AdSense from 'react-adsense'
+import { Advertisement } from 'semantic-ui-react';
 
 export default function Home() {
 
@@ -93,11 +94,15 @@ export default function Home() {
             <GoogleAd/>
           </Center>
           <Center>
+          <Advertisement unit="medium rectangle">
             <AdSense.Google
-              client='ca-pub-4591861188995436'
-              slot='4640466102'
-              style={{ width: 500, height: 300, float: 'left' }}
+              client="ca-pub-4591861188995436"
+              format=""
+              slot="6710577704"
+              style={{ display: "inline-block", height: 250, width: 300 }}
             />
+          </Advertisement>
+            
           </Center>
         </div>
       </section>
