@@ -17,14 +17,14 @@ export default function Layout({title, children}) {
         <meta property="og:url" content="https://metatags.site/"/>
         <meta property="og:title" content="Meta Generator - Website Meta Tag Checker and Generator"/>
         <meta property="og:description" content="With Meta Tags you can edit and experiment with your content then preview how your webpage will look on Google, Facebook, Twitter and more!"/>
-        <meta property="og:image" content="https://metatags.site/metatags1.png"/>
+        <meta property="og:image" content="/metatags1.png"/>
 
         {/*<!-- Twitter -->*/}
         <meta property="twitter:card" content="summary_large_image"/>
         <meta property="twitter:url" content="https://metatags.site/"/>
         <meta property="twitter:title" content="Meta Generator - Website Meta Tag Checker and Generator"/>
         <meta property="twitter:description" content="With Meta Tags you can edit and experiment with your content then preview how your webpage will look on Google, Facebook, Twitter and more!"/>
-        <meta property="twitter:image" content="https://metatags.site/metatags1.png"/>
+        <meta property="twitter:image" content="/metatags1.png"/>
       </Head>
       <main className="min-h-screen">
         {children}
