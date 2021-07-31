@@ -10,11 +10,11 @@ export default function about() {
     <Layout>
       <Header />
       <div id="Content" className="m-5 sm:m-2 grid grid-cols-5 gap-10">
-        <div className="col-span-5 sm:col-span-5 lg:col-span-1">Ad here</div>
+        <div className="col-span-5 sm:col-span-5 lg:col-span-1">{/*Ad Here */}</div>
         <div className="col-span-5 sm:col-span-3 lg:col-span-3">
           <div className="my-10">
           <Box w={"100%"}>
-            <Heading size={"lg"} textColor={"gray.700"}>About</Heading>
+            <Heading size={"lg"} textColor={"gray.700"}>About Us</Heading>
             <Text my={3} fontSize={"lg"} textColor={"gray.600"}>
               {`While developing personal websites, I was always on the lookout for best practices and examples of meta tags that would make most sense and impact. While there were some tools that could generate those, I haven't found a tool that could show me how my websites will look like after my visitors would share them.`}
             </Text>
@@ -34,7 +34,7 @@ export default function about() {
           </Box>
           </div>
         </div>
-        <div className="col-span-5 sm:col-span-2 lg:col-span-1">Ad here</div>
+        <div className="col-span-5 sm:col-span-2 lg:col-span-1">{/*Ad Here */}</div>
       </div>
     </Layout>
   )
