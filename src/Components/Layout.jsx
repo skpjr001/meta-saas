@@ -9,7 +9,7 @@ export default function Layout({title, children}) {
       <Script src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></Script>
       <Head>
         <title>{title}</title>
-        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css" />
       </Head>
       <main className="min-h-screen">
         {children}

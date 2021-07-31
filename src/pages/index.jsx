@@ -94,13 +94,14 @@ export default function Home() {
             <GoogleAd/>
           </Center>
           <Center>
-          <Advertisement unit="medium rectangle">
+          
             <Adsense
               client="ca-pub-4591861188995436"
+              format=""
               slot="6710577704"
               style={{ display: "inline-block", height: 250, width: 300 }}
             />
-          </Advertisement>
+          
             
           </Center>
         </div>

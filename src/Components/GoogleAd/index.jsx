@@ -20,6 +20,7 @@ class BasicAd extends Component {
         className="adsbygoogle"
         data-ad-client="ca-pub-4591861188995436"
         data-ad-slot="4640466102"
+        google_adtest = "on"
         style={{ display: "inline-block", height: 250, width: 300 }}
       />
     );
