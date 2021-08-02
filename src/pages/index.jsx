@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react'
 import Layout from '../Components/Layout'
 import Link from 'next/link'
+import Head from 'next/head';
 import {useRouter} from 'next/router';
 import {FormControl, InputGroup, Input, InputLeftAddon, Button, Center, Text, Box, Heading, Wrap, Divider} from '@chakra-ui/react'
 import WarningContext from '../Components/Warning/WarningContext';
@@ -58,6 +59,10 @@ export default function Home() {
 
   return (
     <>
+    <Head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6423824487719454"
+     crossorigin="anonymous"></script>
+    </Head>
     <Warning />
     <Box id="Header" className="m-2 pt-3 sm:pt-7 sm:pr-7 flex flex-row justify-end">
       <Link href="/"><a><Heading pl={3} textColor={"gray.700"} fontWeight={"semibold"} size={"sm"} _hover={{textColor:"gray.400"}}>Why Meta Tags?</Heading></a></Link>

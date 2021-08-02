@@ -1,6 +1,8 @@
 import React, {} from 'react';
 import {useRouter} from'next/router'
+import Head from 'next/head';
 import { Box } from '@chakra-ui/react';
+
 import MetaData from '../Components/MetaData';
 import Warning from '../Components/Warning/Index';
 import Header from '../Components/Header';
@@ -15,6 +17,10 @@ export default function meta() {
 
   return (
     <>
+    <Head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6423824487719454"
+     crossorigin="anonymous"></script>
+    </Head>
     <Warning />
     <Layout title={`Meta tags for ${url} | Meta Tags`}>
     <Box className="lg:container mx-auto">
