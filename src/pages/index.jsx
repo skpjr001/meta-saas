@@ -5,6 +5,10 @@ import {useRouter} from 'next/router';
 import {FormControl, InputGroup, Input, InputLeftAddon, Button, Center, Text, Box, Heading, Wrap, Divider} from '@chakra-ui/react'
 import WarningContext from '../Components/Warning/WarningContext';
 import Warning from '../Components/Warning/Index';
+import {Adsense} from '@ctrl/react-adsense';
+
+
+
 export default function Home() {
 
   //next router
