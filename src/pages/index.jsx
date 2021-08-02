@@ -7,7 +7,6 @@ import WarningContext from '../Components/Warning/WarningContext';
 import Warning from '../Components/Warning/Index';
 
 
-
 export default function Home() {
 
   //next router
